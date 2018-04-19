@@ -9,7 +9,12 @@ export const MainRoutes = [
     title: 'Anasayfa',
     icon:  FontIcons.profile,
     screen: Screens.Articles4,
-    children: []
+    children: [{
+      id: 'SignUP',
+      title: 'Article View',
+      screen: Screens.SignUp,
+      children: []
+    }]
   },
   {
     id: 'SocialMenu',
@@ -21,13 +26,9 @@ export const MainRoutes = [
         title: 'Article View',
         screen: Screens.Article,
         children: []
-      },{
-        id: 'Article',
-        title: 'Article View',
-        screen: Screens.Article,
-        children: []
       }]
   },
+
   {
     id: 'ArticlesMenu',
     title: 'Tahminler',
@@ -59,8 +60,6 @@ export const MainRoutes = [
 
 
 
-
-
 let menuRoutes = _.cloneDeep(MainRoutes);
 menuRoutes.unshift({
   id: 'Articles4',
@@ -69,4 +68,6 @@ menuRoutes.unshift({
   children: []
 },);
 
+
 export const MenuRoutes = menuRoutes;
+

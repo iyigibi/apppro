@@ -4,7 +4,7 @@ import {
   Image,
   View,
   Dimensions,
-  StatusBar
+  StatusBar,AsyncStorage
 } from 'react-native';
 import {
   RkText,
@@ -16,19 +16,46 @@ import {
 } from '../../config/theme';
 import {NavigationActions} from 'react-navigation';
 import {scale, scaleModerate, scaleVertical} from '../../utils/scale';
+import globalVars from '../../data/globalVars';
 
 let timeFrame = 500;
+
+
+
+
 
 export class SplashScreen extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      progress: 0
+      progress: 0,
+      nereye:'Home'
     }
   }
 
+  componentWillMount(){
+    var self = this;
+    AsyncStorage.getItem('@eduadisc8:token').then((value)=>{console.log(value);
+    if(value==null){
+      globalVars.token=value;
+      
+      console.log(value);
+      this.setState({nereye:'signUP'})
+      //self.props.navigation.navigate('SignUP', {id: 'asd'});
+
+
+
+    }
+    });
+  }
+
+
+
+
+
   componentDidMount() {
+    var self = this;
     StatusBar.setHidden(true, 'none');
     RkTheme.setTheme(KittenTheme);
 
@@ -36,12 +63,22 @@ export class SplashScreen extends React.Component {
       if (this.state.progress == 1) {
         clearInterval(this.timer);
         setTimeout(() => {
-          StatusBar.setHidden(false, 'slide');
-          let toHome = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({routeName: 'Home'})]
-          });
-          this.props.navigation.dispatch(toHome)
+
+          if(this.state.nereye=='Home'){
+            StatusBar.setHidden(false, 'slide');
+            let toHome = NavigationActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({routeName: 'Home'})]
+            });
+            this.props.navigation.dispatch(toHome)
+          }else{
+            self.props.navigation.navigate('SignUP', {id: 'asd'});
+          }
+
+          
+
+
+
         }, timeFrame);
       } else {
         let random = 1;

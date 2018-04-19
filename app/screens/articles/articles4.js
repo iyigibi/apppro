@@ -3,7 +3,7 @@ import {
   FlatList,
   Image,
   View,
-  TouchableOpacity,StyleSheet, Dimensions
+  TouchableOpacity,StyleSheet, Dimensions,AsyncStorage
 } from 'react-native';
 import {
   RkText,RkTabView,
@@ -14,7 +14,7 @@ import {data} from '../../data';
 import {FontAwesome} from '../../assets/icons';
 import axios from 'axios';
 import Carousel from 'react-native-banner-carousel';
-
+import globalVars from '../../data/globalVars';
 
 
 const BannerWidth = Dimensions.get('window').width;
@@ -89,7 +89,11 @@ export class Articles4 extends React.Component {
   }
 
 
+
+
   componentWillMount() {
+
+
     console.log("anasayfa istendi");
     this.CallService();
   }
