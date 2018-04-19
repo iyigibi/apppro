@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "SportApp",
+    "slug": "SportApp",
+    "githubUrl": "https://github.com/SportApp",
+    "sdkVersion": "24.0.0",
+    "icon": "./icon.png",
+    "orientation": "portrait",
+    "loading": {
+      "icon": "./icon_rounded.png"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "bundleIdentifier": "com.Sport.app",
+      "buildNumber": "1.0.10",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.Sport.app",
+      "versionCode": 16
+    },
+    "version": "1.0.10"
+  }
+}
