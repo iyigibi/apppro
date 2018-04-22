@@ -19,6 +19,7 @@ export class Avatar extends RkComponent {
     badgeText: {}
   };
 
+
   constructor(props) {
     super(props);
   }
@@ -27,7 +28,10 @@ export class Avatar extends RkComponent {
     let {image, badge, badgeText} = styles;
     return (
       <View>
-        <Image style={image} source={this.props.img}/>
+        <Image style={[image,{
+    borderColor: '#cccccc',
+    borderWidth: 10,
+  }]} source={this.props.img}/>
         { this.props.badge && this.renderBadge(badge, badgeText)}
       </View>
     )

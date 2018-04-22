@@ -14,7 +14,8 @@ import {data} from '../../data';
 import {FontAwesome} from '../../assets/icons';
 import axios from 'axios';
 import Carousel from 'react-native-banner-carousel';
-import globalVars from '../../data/globalVars';
+import User from '../../data/globals';
+
 
 
 const BannerWidth = Dimensions.get('window').width;
@@ -137,7 +138,7 @@ export class Articles4 extends React.Component {
             <View style={styles.overlap}>
               <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
                 <RkText rkType='primary3 big' numberOfLines={1} style={{backgroundColor:'#b8222e', color:'#ffffff',
-                alignSelf: 'flex-start', paddingHorizontal: 5, paddingVertical: -1}}>{this.state.carouselItems[index].newsCategory}</RkText>
+                alignSelf: 'flex-start', paddingHorizontal: 5, paddingVertical: -1}}>{User.getCurrentUser()+this.state.carouselItems[index].newsCategory}</RkText>
                 <RkText rkType='header' numberOfLines={2} style={{ color:'#ffffff'}}>{this.state.carouselItems[index].newsHeader}</RkText>
               </View>
               <View style={{backgroundColor:'#aaaaaa88', height:20, width: BannerWidth}}></View>

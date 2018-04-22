@@ -6,7 +6,7 @@ import {
   Image,
   Platform,
   StyleSheet,
-  TextInput
+  TextInput,TouchableOpacity
 } from 'react-native';
 import {NavigationActions} from 'react-navigation';
 
@@ -83,17 +83,18 @@ export class SideMenu extends React.Component {
     });
 
 
-
-
     return (
       <View style={styles.root}>
         <ScrollView
           showsVerticalScrollIndicator={false}>
+          <TouchableOpacity
+          key={'asdas'}
+          onPress={() => this._navigateAction({id: 'settings'})}>
+              <RkText rkType='header2'>ayarlar</RkText>
+            </TouchableOpacity>
           <View style={[styles.header]}>
-          <View style = {styles.backgroundContainer}>
-            <View style = {styles.backdrop} />
-
-          </View>
+          
+         
           
           <Avatar img={require('../../data/img/avatars/Image6.png')} rkType='big'/>
           <RkText rkType='header2'>ahmet</RkText>
@@ -136,11 +137,7 @@ RkTheme.setType('RkTextInput', 'row2', {
  });
 
 let styles = RkStyleSheet.create(theme => ({
-  backgroundContainer: {
-    position: 'absolute',
-    top: 20,
-    height: 120
-  },
+
   searchContainer: {
     backgroundColor: theme.colors.screen.bold,
     paddingHorizontal: 20,
@@ -148,14 +145,6 @@ let styles = RkStyleSheet.create(theme => ({
     height: 60,
     alignItems: 'center',
     borderWidth:0
-  },
-  backdrop: {
-    flex:1,
-    flexDirection: 'column',
-    borderColor: '#cccccc',
-    borderWidth: 2,
-    borderTopLeftRadius: 60,borderTopRightRadius: 60,borderBottomRightRadius: 60,borderBottomLeftRadius: 60,
-    width: 120,
   },
 
   container: {

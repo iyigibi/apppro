@@ -16,11 +16,9 @@ import {
 } from '../../config/theme';
 import {NavigationActions} from 'react-navigation';
 import {scale, scaleModerate, scaleVertical} from '../../utils/scale';
-import globalVars from '../../data/globalVars';
+import User from '../../data/globals';
 
 let timeFrame = 500;
-
-
 
 
 
@@ -38,14 +36,17 @@ export class SplashScreen extends React.Component {
     var self = this;
     AsyncStorage.getItem('@eduadisc8:token').then((value)=>{console.log(value);
     if(value==null){
-      globalVars.token=value;
+      
       
       console.log(value);
-      this.setState({nereye:'signUP'})
+      this.setState({nereye:'signUP'});
+
       //self.props.navigation.navigate('SignUP', {id: 'asd'});
 
 
 
+    }else{
+      User.setCurrentUser(value);
     }
     });
   }

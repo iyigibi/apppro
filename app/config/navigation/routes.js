@@ -14,7 +14,12 @@ export const MainRoutes = [
       title: 'Article View',
       screen: Screens.SignUp,
       children: []
-    }]
+    },{
+      id: 'settings',
+      title: 'Article View',
+      screen: Screens.Settings,
+      children: []
+    },]
   },
   {
     id: 'SocialMenu',

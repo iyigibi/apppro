@@ -44,6 +44,7 @@ export class SignUp extends React.Component {
     header: null
   };
 
+  
   constructor(props) {
     super(props);
     this.state={
