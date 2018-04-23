@@ -12,3 +12,4 @@ export * from './theme';
 export * from './tahminler';
 export * from './canliSonuclar';
 export * from './istatistikler';
+export * from './canlilar';

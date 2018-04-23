@@ -28,4 +28,6 @@ export const FontAwesome = {
   slashEye: String.fromCharCode(61552),
   github: String.fromCharCode(61595),
   info: String.fromCharCode(61530),
+  settings: String.fromCharCode(61459),
+  
 };

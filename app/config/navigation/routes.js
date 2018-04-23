@@ -51,7 +51,17 @@ export const MainRoutes = [
     title: 'Canli Sonuclar',
     icon: FontIcons.profile,
     screen: Screens.CanliSonuclar,
-    children: []
+    children: [{
+      id: 'Canlilar',
+      title: 'Canli Sonuçlar',
+      screen: Screens.Canlilar,
+      children: []
+    },{
+      id: 'MatchDetailScreen',
+      title: 'Article View',
+      screen: Screens.MatchDetailScreen,
+      children: []
+    }]
   },
   {
     id: 'DashboardsMenu',

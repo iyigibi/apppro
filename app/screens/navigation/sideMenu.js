@@ -88,9 +88,10 @@ export class SideMenu extends React.Component {
         <ScrollView
           showsVerticalScrollIndicator={false}>
           <TouchableOpacity
+          style={{width:50}}
           key={'asdas'}
           onPress={() => this._navigateAction({id: 'settings'})}>
-              <RkText rkType='header2'>ayarlar</RkText>
+              <RkText style={{paddingTop:20,paddingLeft:20}} rkType='awesome secondaryColor small'>{FontAwesome.settings}</RkText>
             </TouchableOpacity>
           <View style={[styles.header]}>
           

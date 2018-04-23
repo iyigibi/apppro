@@ -5,3 +5,4 @@ export * from './articles4';
 export * from './blogposts';
 export * from './article';
 export * from './tahminScreen';
+export * from './matchDetailScreen';

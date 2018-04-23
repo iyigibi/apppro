@@ -7,7 +7,7 @@ import {
 import axios from 'axios';
 import {
 
-  View,StyleSheet
+  View,StyleSheet,TouchableOpacity
 } from 'react-native';
 import {ulkeler} from '../../utils/ulkeIsim'
 import _ from 'lodash'
@@ -35,6 +35,10 @@ render()
     let ulke=ulkeler[i_].Code;
     //let i_=_.findIndex(ulkeler, { 'name': this.props.name });
     return (
+      <TouchableOpacity
+        delayPressIn={70}
+        activeOpacity={0.8}
+        onPress={() => this.props.navigation.navigate('Canlilar', {id: this.props.item.ID,data_: this.props.item})}>
       <View style={{flexDirection:'row'}}>
         <View style={{flex:1}}>
           <RkText rkType='baslik'>{ulke+' '+this.props.item.country+' '+this.props.item.name}</RkText>
@@ -43,6 +47,7 @@ render()
           <RkText>{this.props.item.sayi}</RkText>
         </View>
       </View>
+      </TouchableOpacity>
     )
   }
 }

@@ -9,7 +9,7 @@ import {
   RkText,RkTabView,
   RkCard, RkStyleSheet,RkTheme
 } from 'react-native-ui-kitten';
-import {SocialBar,Bayraklar} from '../../components';
+import {SocialBar,TahminLig} from '../../components';
 import {data} from '../../data';
 import {FontAwesome} from '../../assets/icons';
 import axios from 'axios';
@@ -56,12 +56,12 @@ RkTheme.setType('RkTabView', 'pressed', {
   //borderColor: '#4a636d'
 });
 
-RkTheme.setType('RkText','f12',{
-  fontSize: 14
+RkTheme.setType('RkText','font14',{
+  fontSize: 18
  });
 
-
-export class CanliSonuclar extends React.Component {
+ let self;
+export class Canlilar extends React.Component {
   static navigationOptions = {
     title: 'CANLI SONUÇLAR'.toUpperCase(),
   };
@@ -69,25 +69,25 @@ export class CanliSonuclar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.data=null;
     this.renderItem = this._renderItem.bind(this);
+    let {params} = this.props.navigation.state;
+    let id = params ? params.id : 1;
+    //this.data = data.getArticle(id);
+    this.data = params.data_;
     this.state = {
-      stories: [],
-      leaguesArr: [],
-      isFetching: false,
-    };
+      league_id: props.league,
+      header: props.header,
+      stories:[]
+    }
   }
-
-
-
   
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
-   let self=this;
-   
-        axios.get('http://eduasportin.com/json/listActiveMatchLeages.js?r='+Math.random())
+   self=this;
+        console.log(this.data.ID);
+        axios.get('https://eduasportin.com//json/listLiveMatch.js?criteria=league='+this.data.ID+'&a='+Math.random())
         .then(function (response) {
-          console.log(response.data.list);
+          console.log('burada '+response.data.list);
           let arr=response.data.list;
           arr.unshift({ID:"topGal"});
           self.setState({ stories : arr, isFetching : false });
@@ -99,6 +99,7 @@ export class CanliSonuclar extends React.Component {
          // console.log(error);
         });
   }
+  
 
 
   _keyExtractor(post) {
@@ -131,43 +132,47 @@ renderTab = (isSelected, title,first=false) => {
  };
 
 
-
   _renderItem(info) {
     if(info.item.ID=="topGal"){
         return(
           <View style={styles.container}>
           
-          <TouchableOpacity style={styles.container2}>
-          <RkTabView  rkType='rounded' >
-              <RkTabView.Tab title={(selected) => {
-                return this.renderTab(selected, 'Tüm Maçlar',true);
-              }}/>
-              <RkTabView.Tab title={(selected) => {
-                return this.renderTab(selected, 'Canlı');
-              }}/>
-          </RkTabView>
-          </TouchableOpacity>
       </View>
-      
-           
         )
     }else{
       let pho="https://v1.eduacdn.com/v01/800x600/"+info.item.newsImageName;
     return (
-      
-
-      <View>
-        <Bayraklar item={info.item} navigation={this.props.navigation} /> 
+      <TouchableOpacity
+        delayPressIn={70}
+        activeOpacity={0.8}
+        onPress={() => self.props.navigation.navigate('MatchDetailScreen', {id: info.item.id,data_: info.item})}>
+      <View style={{flex:1,flexDirection:'row',height:50,borderBottomWidth:1,borderBottomColor:'#dedede',paddingTop:10}}>
+      <View style={{flex:2}}>
+          <RkText rkType='font14'>{info.item.minute}</RkText>
+        </View>
+        <View style={{flex:5}}>
+          <RkText rkType='font14'>{info.item.team1}</RkText>
+        </View>
+        <View style={{flex:1,alignItems:'center'}}>
+          <RkText rkType='font14'>{info.item.score}</RkText>
+        </View>
+        <View style={{flex:5,alignItems:'flex-end'}}>
+          <RkText rkType='font14'>{info.item.team2}</RkText>
+        </View>
+        <View style={{flex:1,alignItems:'flex-end'}}>
+          <RkText rkType='awesome' >{FontAwesome.chevronRight }</RkText>
+        </View>
       </View>
+      </TouchableOpacity>
     )
   }
   }
+
 
   
   render() {
     return (
       <View>
-        
         <FlatList
           data={this.state.stories}
           renderItem={this.renderItem}
