@@ -21,6 +21,7 @@ import {
 import {MainRoutes} from '../../config/navigation/routes';
 import {FontAwesome} from '../../assets/icons';
 
+
 import {Avatar} from '../../components/avatar';
 
 export class SideMenu extends React.Component {
@@ -88,10 +89,10 @@ export class SideMenu extends React.Component {
         <ScrollView
           showsVerticalScrollIndicator={false}>
           <TouchableOpacity
-          style={{width:50}}
+          style={{width:150}}
           key={'asdas'}
           onPress={() => this._navigateAction({id: 'settings'})}>
-              <RkText style={{paddingTop:20,paddingLeft:20}} rkType='awesome secondaryColor small'>{FontAwesome.settings}</RkText>
+              <RkText style={{paddingTop:20,paddingLeft:20}} rkType='awesome secondaryColor big'>{FontAwesome.settings+' Ayarlar'}</RkText>
             </TouchableOpacity>
           <View style={[styles.header]}>
           
@@ -104,13 +105,16 @@ export class SideMenu extends React.Component {
           <View style={styles.searchContainer}>
           <RkTextInput autoCapitalize='none'
                        autoCorrect={false}
-                      // onChange={(event) => this._filter(event.nativeEvent.text)}
+                       onChange={(event) => alert('Servisten gelecek')}
                        label={<RkText rkType='awesome'>{FontAwesome.search}</RkText>}
                        rkType='row row2'
                        placeholder='Ara'/>
         </View>
         </View>
           {menu}
+          <View style={{paddingTop:100}}>
+          <RkText rkType='awesome big'>{FontAwesome.facebook+' '+FontAwesome.youtube+' '+FontAwesome.instagram+' '+FontAwesome.twitter}</RkText>
+          </View>
         </ScrollView>
       </View>
     )

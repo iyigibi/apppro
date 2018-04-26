@@ -124,11 +124,14 @@ export class TahminScreen extends React.Component {
                  <TahminBars status={this.data}/>
               </View>
           </View>
+          <View>
+          <RkText> </RkText>
+            <RkText> Karşılaşma detayları servisten gelecek</RkText>
+          </View>
       </ScrollView>
     )
   }
 }
-
 
 
 

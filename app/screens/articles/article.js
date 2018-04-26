@@ -39,12 +39,18 @@ export class Article extends React.Component {
       <ScrollView style={styles.root}>
         <RkCard rkType='article'>
 
-
-
           <View rkCardHeader>
             <View>
               <RkText style={styles.title} rkType='header4'>{this.data.header}</RkText>
-              <RkText rkType='secondary2 hintColor'>{this.data.time}</RkText>
+              <View style={{flexDirection:'row'}}>
+                <View style={{alignSelf:'flex-start',flex:1}}>
+                <RkText rkType='secondary2 hintColor'>Dakika servisten gelecek</RkText>
+                </View>
+                <View  style={{justifyContent:'flex-end',flex:1,flexDirection:'row'}}>
+                <RkText rkType='secondary2 hintColor'>{this.data.time}</RkText>
+                </View>
+              </View>
+
             </View>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('ProfileV1', {id: this.data.user.id})}>
               <Avatar rkType='circle' img={this.data.user.photo}/>

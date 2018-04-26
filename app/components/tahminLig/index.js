@@ -70,6 +70,13 @@ export class TahminLig extends RkComponent {
     return post.ID;
   }
 
+_isprotip(isProtip){
+  if(isProtip=='1'){
+    return FontAwesome.heart+' ';
+  }
+  return ' ';
+}
+
   _renderItem(info) {
     
   
@@ -93,6 +100,8 @@ export class TahminLig extends RkComponent {
             <RkText numberOfLines={1} rkType='header6'  style={{textAlign:'left'}}>{info.item.awayTeam}</RkText>
         </View>
         <View style={styles.overlapRigth}>
+
+        <RkText rkType='awesome' >{this._isprotip(info.item.isProtip)}</RkText>
         <RkText rkType='awesome' >{FontAwesome.info}</RkText>
         </View>
         
@@ -101,8 +110,6 @@ export class TahminLig extends RkComponent {
       </TouchableOpacity>
     )
   }
-
-
 
 
   
@@ -144,11 +151,12 @@ let styles = RkStyleSheet.create(theme => ({
     overflow: 'hidden',
   },overlap: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 15,
   },overlapRigth: {
     position: 'absolute',
+    flexDirection:'row',
     right: 10,
-    bottom: 10,
+    bottom: 15,
   },
   back: {
     flex:1
@@ -166,13 +174,10 @@ let styles = RkStyleSheet.create(theme => ({
   },
   card: {
     marginVertical: 0,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingVertical:15
   },
   post: {
     marginTop: 13
   }
 }));
-
-
-
-

@@ -14,7 +14,7 @@ import _ from 'lodash'
 import SvgUri from 'react-native-svg-uri';
 
 RkTheme.setType('RkText','baslik',{
-  fontSize: 16
+  fontSize: 22
  });
 
 export class Bayraklar extends RkComponent {
@@ -24,7 +24,6 @@ export class Bayraklar extends RkComponent {
     
   }
 
-  
 render()
   {
     let a_=this.props.item.country;
@@ -39,8 +38,8 @@ render()
         delayPressIn={70}
         activeOpacity={0.8}
         onPress={() => this.props.navigation.navigate('Canlilar', {id: this.props.item.ID,data_: this.props.item})}>
-      <View style={{flexDirection:'row'}}>
-        <View style={{flex:1}}>
+      <View style={{flexDirection:'row',paddingVertical:15}}>
+        <View style={{flex:1,borderBottomWidth:1,borderBottomColor:'#dedede'}}>
           <RkText rkType='baslik'>{ulke+' '+this.props.item.country+' '+this.props.item.name}</RkText>
         </View>
         <View style={{alignSelf:'flex-end',backgroundColor:'#ff4433',borderRadius:5,paddingHorizontal:5,marginRight:5}}>

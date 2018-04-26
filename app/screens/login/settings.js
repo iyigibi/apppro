@@ -3,28 +3,38 @@ import {
   ScrollView,
   Image,
   View,
-  TouchableOpacity,Dimensions
+  TouchableOpacity,Dimensions,AsyncStorage
 } from 'react-native';
 import {
   RkCard,
   RkText,
-  RkStyleSheet ,RkTextInput,RkTheme
+  RkStyleSheet ,RkTextInput,RkTheme,RkButton
 } from 'react-native-ui-kitten';
 import {data} from '../../data';
 import {Avatar} from '../../components';
 import {SocialBar} from '../../components';
 let moment = require('moment');
-import {GradientButton} from '../../components/';
+import {FontAwesome} from '../../assets/icons';
+import {NavigationActions} from 'react-navigation';
 
 import * as Progress from 'react-native-progress';
 
 const WindowWidth = Dimensions.get('window').width*0.5;
 
 
+
+
 RkTheme.setType('RkTextInput','bgColor',{
   backgroundColor:'#dedede'
  });
+ RkTheme.setType('RkButton', 'dark', {
+  backgroundColor: '#ff0000',
+  borderRadius: 5,
+  width:WindowWidth,
+});
 
+
+let self;
 
 
 export class Settings extends React.Component {
@@ -36,6 +46,7 @@ export class Settings extends React.Component {
     super(props);
     let {params} = this.props.navigation.state;
     let id = params ? params.id : 1;
+    self=this;
     //this.data = data.getArticle(id);
   }
 
@@ -44,8 +55,15 @@ export class Settings extends React.Component {
   //<RkText rkType='secondary2 hintColor'>{moment().add(this.data.time, 'seconds').fromNow()}</RkText>
 
 
-
   render() {
+    function logOut(){
+     AsyncStorage.removeItem('@eduadisc8:token');
+     let toHome = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({routeName: 'SignUP'})]
+    });
+    self.props.navigation.dispatch(toHome)
+    }
     return (
       <ScrollView style={styles.root}>
       <View style={{flexDirection:'row',paddingTop:30,paddingBottom:20,alignItems:'center',alignSelf:'center'}}>
@@ -59,14 +77,26 @@ export class Settings extends React.Component {
       <RkTextInput rkType='bordered bgColor' placeholder='Nick name' onChangeText={(firstname) => this.setState({firstname})}/>
       <RkTextInput rkType='bordered bgColor' placeholder='Date of birth' onChangeText={(firstname) => this.setState({firstname})}/>
       <RkTextInput rkType='bordered bgColor' placeholder='Phone number' onChangeText={(firstname) => this.setState({firstname})}/>
-      <GradientButton style={styles.save} rkType='medium' text='KAYDET' onPress={() => {
-              this.props.navigation.goBack()
-            }}/>
+      <RkButton rkType='dark'  onPress={() => {
+              alert('Servisten gelecek');
+            }}>KAYDET</RkButton>
+
+        
       </View>
+      <View style={{marginTop:10,marginBottom:10, padding:1,backgroundColor:'#ff0000'}}>
+          
+        </View>
+        <View style={{width:WindowWidth,alignSelf:'center'}}>
+        <RkButton rkType='dark'  onPress={() => {
+              logOut();
+            }}>LOGOUT</RkButton>
+            </View>
       </ScrollView>
     )
   }
 }
+
+
 
 
 

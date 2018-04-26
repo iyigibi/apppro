@@ -13,6 +13,7 @@ import {
 import {data} from '../../data';
 import {Avatar} from '../../components';
 import {WinLose,TahminBars} from '../../components';
+import axios from 'axios';
 let moment = require('moment');
 
 
@@ -32,10 +33,56 @@ export class MatchDetailScreen extends React.Component {
     let id = params ? params.id : 1;
     //this.data = data.getArticle(id);
     this.data = params.data_;
+    this.state = {
+      stories:[]
+    }
    // matchXMLID;
    
   }
 
+  componentWillMount() {
+    // this.data =data.getArticles('mainNews');
+    self=this;
+        // console.log(this.data.ID);
+         axios.get('http://eduasportin.com/json/listLiveMatchStatistics.js?criteria=matchXMLID='+this.data.matchXMLID+'&a='+Math.random())
+         .then(function (response) {
+         //  console.log('burada '+response.data.list);
+           let arr=response.data.list;
+          // arr.unshift({ID:"topGal"});
+           self.setState({ stories : arr, isFetching : false });
+         
+           //this.data=response.data.list;
+         })
+         .catch(function (error) {
+ 
+          // console.log(error);
+         });
+   }
+
+
+
+
+   etkinlikEkle(etkinlikler_) {
+
+    return etkinlikler_.map((data) => {
+      let hangiTaraf;
+      if(data.eventType=='Goal'){
+        if(data.ScoringTeam=='1'){
+          return (<View key={data} style={{flexDirection:'row',borderWidth:1}}><View style={{flex:8}}><RkText>{'gol '+data.Player.text}</RkText></View><View style={{flex:1}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}></View></View>)
+        }else{
+          return (<View key={data} style={{flexDirection:'row',borderWidth:1}}><View style={{flex:8}}></View><View style={{flex:1}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}><RkText>{'gol '+data.Player.text}</RkText></View></View>)        
+       }
+     }else{
+      if(data.PlayerTeam=='1'){
+        return (<View key={data} style={{flexDirection:'row',borderWidth:1}}><View style={{flex:8}}><RkText>{data.type+' card '+data.Player.text}</RkText></View><View style={{flex:1}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}></View></View>)
+      }else{
+        return (<View key={data} style={{flexDirection:'row',borderWidth:1}}><View style={{flex:8}}></View><View style={{flex:1}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}><RkText>{data.type+' card '+data.Player.text}</RkText></View></View>)        
+     }
+      }
+      
+    })
+
+}
 
 
   //<RkText rkType='secondary2 hintColor'>{moment().add(this.data.time, 'seconds').fromNow()}</RkText>
@@ -54,6 +101,23 @@ export class MatchDetailScreen extends React.Component {
       saat=strm;
     }
     
+
+if(this.state.stories.length>0){
+  var str_=this.state.stories[0].jsonText;
+  str_ = str_.replace('/','');
+let detailsObj=JSON.parse(str_);
+
+let goals_=detailsObj.Match.Goals.Goal;
+goals_.forEach(function(obj) { obj.eventType = "Goal"; });
+let cards_=detailsObj.Match.Cards.Card;
+cards_.forEach(function(obj) { obj.eventType = "Card"; });
+var etkinlikler_ = goals_.concat(cards_);
+etkinlikler_.sort(function(a,b) {return (a.Time > b.Time) ? 1 : ((b.Time > a.Time) ? -1 : 0);} );
+//console.log(JSON.stringify(etkinlikler_));
+etkinlikler_.reverse();
+let etkinlikComp=this.etkinlikEkle(etkinlikler_);
+
+
 
     return (
       <ScrollView style={styles.root}>
@@ -75,16 +139,15 @@ export class MatchDetailScreen extends React.Component {
           <View  style={styles.stun2}>
             <View style={styles.kutu2}>
             <View style={{paddingVertical:5}}></View>
-            <Image  style={{width:w_,height:w_}} source={{uri:'https://v1.eduacdn.com/v01/teamlogo/'+this.data.team1UniqueID+'.png'}}/>
-           <RkText>{this.data.team1UniqueID}</RkText>
+            <Image  style={{width:w_,height:w_}} source={{uri:'https://v1.eduacdn.com/v01/teamlogo/'+this.state.stories[0].team1UniqueID+'.png'}}/>
             <View style={{paddingVertical:10}}></View>
             </View>
             <View style={styles.kutu}>
-                <RkText rkType='f40'>{saat}</RkText>
+                <RkText rkType='f40'>{this.state.stories[0].score}</RkText>
             </View>
             <View style={styles.kutu2}>
             <View style={{paddingVertical:5}}></View>
-            <Image  style={{width:w_,height:w_}} source={{uri:'https://v1.eduacdn.com/v01/teamlogo/'+this.data.team2UniqueID+'.png'}}/>
+            <Image  style={{width:w_,height:w_}} source={{uri:'https://v1.eduacdn.com/v01/teamlogo/'+this.state.stories[0].team2UniqueID+'.png'}}/>
             </View>
           </View>
           <View  style={styles.stun}>
@@ -93,46 +156,27 @@ export class MatchDetailScreen extends React.Component {
 
             </View>
           </View>
-          <View  style={styles.stun}>
-            <View style={styles.kutu3}>
-              <WinLose status='W'/>
-              <WinLose status='D'/>
-              <WinLose status='L'/>
-              <WinLose status='W'/>
-              <WinLose status='L'/>
-            </View>
-            <View style={styles.kutu}>
-                <RkText></RkText>
-            </View>
-            <View style={styles.kutu3}>
-              <WinLose status='W'/>
-              <WinLose status='D'/>
-              <WinLose status='L'/>
-              <WinLose status='W'/>
-              <WinLose status='L'/>
-            </View>
-          </View>
+          
           <View style={styles.root}>
 
-            <RkText>Tüm Tahminler</RkText>
+            <RkText>ETKİNLİKLER</RkText>
             
 
           </View>
-          <View  style={styles.stun}>
-              <View style={styles.kutu4}>
-                  <RkText>1-X-2</RkText>
-              </View>
-              <View style={styles.kutu}>
-                  <RkText></RkText>
-              </View>
-              <View style={styles.kutu5}>
-                 <TahminBars status={this.data}/>
-              </View>
+          <View style={styles.stun}>
+          <View style={styles.kutu}>
+            {etkinlikComp}
+            </View>
           </View>
       </ScrollView>
     )
+  }else{
+    return (<View></View>);
+  }
   }
 }
+
+
 
 
 

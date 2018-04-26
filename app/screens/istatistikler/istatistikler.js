@@ -129,7 +129,11 @@ renderTab = (isSelected, title,first=false) => {
       <RkText rkType='f12' style={{color, marginLeft: 0}}>{title}</RkText>
     </View>);
  };
-
+ _SetStats(index){
+  if(index>0){
+    alert('Servisten gelecek');
+  }
+}
 
   _renderItem(info) {
     if(info.item.ID=="topGal"){
@@ -137,7 +141,7 @@ renderTab = (isSelected, title,first=false) => {
           <View style={styles.container}>
           
           <TouchableOpacity style={styles.container2}>
-          <RkTabView  rkType='rounded' >
+          <RkTabView  rkType='rounded'   onTabChanged={(index) => this._SetStats(index)}>
               <RkTabView.Tab title={(selected) => {
                 return this.renderTab(selected, 'Sonuçlar',true);
               }}/>

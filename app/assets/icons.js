@@ -29,5 +29,8 @@ export const FontAwesome = {
   github: String.fromCharCode(61595),
   info: String.fromCharCode(61530),
   settings: String.fromCharCode(61459),
+  youtube: String.fromCharCode(61799), 
+  instagram: String.fromCharCode(61805), 
+  twitter: String.fromCharCode(61569), 
   
 };

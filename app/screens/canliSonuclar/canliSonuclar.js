@@ -130,7 +130,11 @@ renderTab = (isSelected, title,first=false) => {
     </View>);
  };
 
-
+_SetLive(index){
+  if(index>0){
+    alert('Servisten gelecek');
+  }
+}
 
   _renderItem(info) {
     if(info.item.ID=="topGal"){
@@ -138,7 +142,7 @@ renderTab = (isSelected, title,first=false) => {
           <View style={styles.container}>
           
           <TouchableOpacity style={styles.container2}>
-          <RkTabView  rkType='rounded' >
+          <RkTabView  rkType='rounded'  onTabChanged={(index) => this._SetLive(index)}>
               <RkTabView.Tab title={(selected) => {
                 return this.renderTab(selected, 'Tüm Maçlar',true);
               }}/>

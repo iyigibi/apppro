@@ -183,6 +183,7 @@ renderTab = (isSelected, title,first=false) => {
       this.CallService(diger);
     }else if(index==3){
       this.CallService(diger);
+      alert('Servisten gelecek')
     }
   }
   _renderItem(info) {
@@ -244,27 +245,30 @@ renderTab = (isSelected, title,first=false) => {
           }
         }
         })}>
-      	<RkCard rkType='horizontal' style={styles.card}>
+      	<View style={{flexDirection:'row',padding:10}}>
           <Image
-          rkCardImg
+          style={{flex:2}}
           source={{uri: pho}}
         />
-
-          <View rkCardContent>
-            <RkText numberOfLines={1} rkType='header6'>{info.item.newsShortTitle}</RkText>
-            <RkText numberOfLines={2} style={styles.post} rkType='secondary1'>{info.item.newsHeader}</RkText>
+          <View style={{flex:6}}>
+            <RkText numberOfLines={1} rkType='secondary1'>{info.item.newsShortTitle}</RkText>
+            <RkText numberOfLines={1} style={styles.post} rkType='secondary2'>{info.item.newsHeader}</RkText>
           </View>
-          <View rkCardRigth >
+          <View style={{flex:0.5, alignItems:'flex-end'}}>
           <View style={styles.content}>
             <RkText rkType='awesome secondaryColor small' >{FontAwesome.chevronRight}</RkText>
             </View >
           </View >
-        </RkCard>
+        </View>
       </TouchableOpacity>
     )
   }
   }
+  
 
+
+
+  
 
   
   render() {
@@ -310,7 +314,8 @@ let styles = RkStyleSheet.create(theme => ({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    overflow:'hidden'
+    overflow:'hidden',
+
   },
   content2: {
     flex: 1,

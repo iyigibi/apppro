@@ -84,10 +84,10 @@ export class Canlilar extends React.Component {
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
    self=this;
-        console.log(this.data.ID);
+       // console.log(this.data.ID);
         axios.get('https://eduasportin.com//json/listLiveMatch.js?criteria=league='+this.data.ID+'&a='+Math.random())
         .then(function (response) {
-          console.log('burada '+response.data.list);
+         // console.log('burada '+response.data.list);
           let arr=response.data.list;
           arr.unshift({ID:"topGal"});
           self.setState({ stories : arr, isFetching : false });

@@ -1,24 +1,24 @@
 {
   "expo": {
-    "name": "SportApp",
-    "slug": "SportApp",
-    "githubUrl": "https://github.com/SportApp",
+    "name": "EduaSport",
+    "slug": "EduaSport",
+    "githubUrl": "https://github.com/EduaSport",
     "sdkVersion": "24.0.0",
-    "icon": "./icon.png",
+    "icon": "./EduaSport.png",
     "orientation": "portrait",
     "loading": {
-      "icon": "./icon_rounded.png"
+      "icon": "./EduaSport.png"
     },
     "androidStatusBar": {
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "bundleIdentifier": "com.Sport.app",
+      "bundleIdentifier": "com.EduaSport.EduaSport",
       "buildNumber": "1.0.10",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.Sport.app",
+      "package": "com.EduaSport.EduaSport",
       "versionCode": 16
     },
     "version": "1.0.10"
