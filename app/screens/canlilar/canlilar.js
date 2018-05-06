@@ -81,11 +81,13 @@ export class Canlilar extends React.Component {
     }
   }
   
+
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
    self=this;
        // console.log(this.data.ID);
-        axios.get('https://eduasportin.com//json/listLiveMatch.js?criteria=league='+this.data.ID+'&a='+Math.random())
+       
+        axios.get('https://eduasportin.com//json/listLiveMatchToday.js?criteria=league%20IN('+this.data.ID+')%20AND%20matchDate%20BETWEEN%20%27'+'2018-05-1%2000:00:00'+'%27%20AND%20%27'+'2018-05-1%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
          // console.log('burada '+response.data.list);
           let arr=response.data.list;
@@ -169,10 +171,11 @@ renderTab = (isSelected, title,first=false) => {
   }
 
 
+
   
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <FlatList
           data={this.state.stories}
           renderItem={this.renderItem}
@@ -189,6 +192,7 @@ renderTab = (isSelected, title,first=false) => {
 
 let styles = RkStyleSheet.create(theme => ({
   container: {
+    flex:1,
     backgroundColor: theme.colors.screen.scroll,
     paddingVertical: 0,
     paddingHorizontal: 0

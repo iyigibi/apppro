@@ -8,7 +8,7 @@ export const MainRoutes = [
     id: 'LoginMenu',
     title: 'Anasayfa',
     icon:  FontIcons.profile,
-    screen: Screens.Articles4,
+    screen: Screens.Anasayfa,
     children: [{
       id: 'SignUP',
       title: 'Article View',
@@ -79,10 +79,11 @@ let menuRoutes = _.cloneDeep(MainRoutes);
 menuRoutes.unshift({
   id: 'Articles4',
   title: 'Article List V4',
-  screen: Screens.Articles4,
+  screen: Screens.Anasayfa,
   children: []
 },);
 
 
 export const MenuRoutes = menuRoutes;
+
 

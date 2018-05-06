@@ -6,3 +6,4 @@ export * from './blogposts';
 export * from './article';
 export * from './tahminScreen';
 export * from './matchDetailScreen';
+export * from './anasayfa';

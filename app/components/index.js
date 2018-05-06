@@ -16,3 +16,5 @@ export * from './tahminLig';
 export * from './winLose';
 export * from './tahminBars';
 export * from './bayraklar';
+export * from './statCell';
+export * from './groupHeader';

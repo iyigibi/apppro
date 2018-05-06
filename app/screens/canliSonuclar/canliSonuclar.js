@@ -80,12 +80,11 @@ export class CanliSonuclar extends React.Component {
 
 
 
-  
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
    let self=this;
    
-        axios.get('http://eduasportin.com/json/listActiveMatchLeages.js?r='+Math.random())
+        axios.get('http://eduasportin.com/json/listActiveMatchLeagesToday.js?criteria=matchDate%20BETWEEN%20%27'+'2018-05-1%2000:00:00'+'%27%20AND%20%27'+'2018-05-1%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
           console.log(response.data.list);
           let arr=response.data.list;
@@ -160,7 +159,7 @@ _SetLive(index){
     return (
       
 
-      <View>
+      <View style={styles.container}>
         <Bayraklar item={info.item} navigation={this.props.navigation} /> 
       </View>
     )
@@ -170,8 +169,7 @@ _SetLive(index){
   
   render() {
     return (
-      <View>
-        
+      <View style={styles.container}>
         <FlatList
           data={this.state.stories}
           renderItem={this.renderItem}
@@ -190,7 +188,8 @@ let styles = RkStyleSheet.create(theme => ({
   container: {
     backgroundColor: theme.colors.screen.scroll,
     paddingVertical: 0,
-    paddingHorizontal: 0
+    paddingHorizontal: 0,
+    flex:1,
   },container2: {
     backgroundColor: theme.colors.screen.scroll,
     marginVertical:10,
