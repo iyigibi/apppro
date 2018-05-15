@@ -157,6 +157,7 @@ export class MatchDetailScreen extends React.Component {
 if(this.state.stories.length>0){
   var str_=this.state.stories[0].jsonText;
   str_ = str_.replace('/','');
+  console.log(str_);
 let detailsObj=JSON.parse(str_);
 
 let goals_;
@@ -238,8 +239,66 @@ let MatchDate=moment(date).format('DD.MM.YYYY hh:mm');
 
 let w__=Dimensions.get('window').width;
 let h__=((w__*9)/16);
-let h1=Number(detailsObj.Match.Statistics.BallPossession.Team1);
-let h2=Number(detailsObj.Match.Statistics.BallPossession.Team2);
+let h1,h2;
+let StatisticsComp=(<View></View>);
+if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
+  h1=Number(detailsObj.Match.Statistics.BallPossession.Team1);
+   h2=Number(detailsObj.Match.Statistics.BallPossession.Team2);
+   StatisticsComp=  (
+    <View style={styles.root}>
+    <GroupHeader label={<RkText rkType='fontEvents'>İstatistik</RkText>}/>
+    
+    
+    <View>
+    <View  style={{position:'absolute',bottom:0}}>
+    <LinearGradient colors={['#ffffff','#dedede']}
+     start={{x: 0.0, y: 0.0}}
+     end={{x: 0.0, y: 1}}
+     
+     style={{paddingLeft:0,paddingTop:10,width:800}}
+     >
+     </LinearGradient>
+     </View>
+     {StatisticsComp}
+     <View style={{justifyContent:'center',flexDirection:'row'}}>
+     <RkText>BALL POSSESSION</RkText>
+    </View>
+     <View style={{flexDirection:'row',alignItems:'flex-end'}}>
+     <View style={{flexDirection:'row',flex:1,justifyContent:'flex-start'}}>
+       <View style={{flexDirection:'row',paddingTop:h1,justifyContent:'space-between',flex:1,paddingHorizontal:10,marginHorizontal:10,alignItems:'flex-end',backgroundColor:'#ff0000',borderTopLeftRadius:10,borderTopRightRadius:10}}>
+       <RkText rkType='possession'>{detailsObj.Match.Statistics.BallPossession.Team1}</RkText>
+       <RkText rkType='possessionTeam'>{this.data.team1}</RkText>
+       </View>
+     </View>
+     <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+     <View style={{flexDirection:'row',paddingTop:h2,justifyContent:'space-between',flex:1,paddingHorizontal:10,marginHorizontal:10,alignItems:'flex-end',backgroundColor:'#000000',borderTopLeftRadius:10,borderTopRightRadius:10}}>
+       <RkText rkType='possession'>{detailsObj.Match.Statistics.BallPossession.Team2}</RkText>
+       <View><RkText rkType='possessionTeam'>{this.data.team2}</RkText></View>
+       </View>
+     </View>
+    </View>
+    
+    </View>
+    
+
+     <StatCell label='CornerKicks' val1={detailsObj.Match.Statistics.CornerKicks.Team1} val2={detailsObj.Match.Statistics.CornerKicks.Team2}></StatCell>
+     <StatCell label='Fouls' val1={detailsObj.Match.Statistics.Fouls.Team1} val2={detailsObj.Match.Statistics.Fouls.Team2}></StatCell>
+     <StatCell label='FreeKicks' val1={detailsObj.Match.Statistics.FreeKicks.Team1} val2={detailsObj.Match.Statistics.FreeKicks.Team2}></StatCell>
+     <StatCell label='GoalkeeperSaves' val1={detailsObj.Match.Statistics.GoalkeeperSaves.Team1} val2={detailsObj.Match.Statistics.GoalkeeperSaves.Team2}></StatCell>
+     <StatCell label='GoalKicks' val1={detailsObj.Match.Statistics.GoalKicks.Team1} val2={detailsObj.Match.Statistics.GoalKicks.Team2}></StatCell>
+     <StatCell label='Offsides' val1={detailsObj.Match.Statistics.Offsides.Team1} val2={detailsObj.Match.Statistics.Offsides.Team2}></StatCell>
+     <StatCell label='ShotsOffGoal' val1={detailsObj.Match.Statistics.ShotsOffGoal.Team1} val2={detailsObj.Match.Statistics.ShotsOffGoal.Team2}></StatCell>
+     <StatCell label='ShotsOnGoal' val1={detailsObj.Match.Statistics.ShotsOnGoal.Team1} val2={detailsObj.Match.Statistics.ShotsOnGoal.Team2}></StatCell>
+     <StatCell label='ThrowIns' val1={detailsObj.Match.Statistics.ThrowIns.Team1} val2={detailsObj.Match.Statistics.ThrowIns.Team2}></StatCell>
+     
+
+     
+     </View>
+
+
+  );
+}
+
     return (
       <View style={styles.root}>
       <View style={{}}>
@@ -295,54 +354,7 @@ let h2=Number(detailsObj.Match.Statistics.BallPossession.Team2);
             {etkinlikComp}
             </View>
           </View>
-          <View style={styles.root}>
-         <GroupHeader label={<RkText rkType='fontEvents'>İstatistik</RkText>}/>
-         
-         
-         <View>
-         <View  style={{position:'absolute',bottom:0}}>
-         <LinearGradient colors={['#ffffff','#dedede']}
-          start={{x: 0.0, y: 0.0}}
-          end={{x: 0.0, y: 1}}
-          
-          style={{paddingLeft:0,paddingTop:10,width:800}}
-          >
-          </LinearGradient>
-          </View>
-          <View style={{justifyContent:'center',flexDirection:'row'}}>
-          <RkText>BALL POSSESSION</RkText>
-         </View>
-          <View style={{flexDirection:'row',alignItems:'flex-end'}}>
-          <View style={{flexDirection:'row',flex:1,justifyContent:'flex-start'}}>
-            <View style={{flexDirection:'row',paddingTop:h1,justifyContent:'space-between',flex:1,paddingHorizontal:10,marginHorizontal:10,alignItems:'flex-end',backgroundColor:'#ff0000',borderTopLeftRadius:10,borderTopRightRadius:10}}>
-            <RkText rkType='possession'>{detailsObj.Match.Statistics.BallPossession.Team1}</RkText>
-            <RkText rkType='possessionTeam'>{this.data.team1}</RkText>
-            </View>
-          </View>
-          <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
-          <View style={{flexDirection:'row',paddingTop:h2,justifyContent:'space-between',flex:1,paddingHorizontal:10,marginHorizontal:10,alignItems:'flex-end',backgroundColor:'#000000',borderTopLeftRadius:10,borderTopRightRadius:10}}>
-            <RkText rkType='possession'>{detailsObj.Match.Statistics.BallPossession.Team2}</RkText>
-            <View><RkText rkType='possessionTeam'>{this.data.team2}</RkText></View>
-            </View>
-          </View>
-         </View>
-         
-         </View>
-         
-
-          <StatCell label='CornerKicks' val1={detailsObj.Match.Statistics.CornerKicks.Team1} val2={detailsObj.Match.Statistics.CornerKicks.Team2}></StatCell>
-          <StatCell label='Fouls' val1={detailsObj.Match.Statistics.Fouls.Team1} val2={detailsObj.Match.Statistics.Fouls.Team2}></StatCell>
-          <StatCell label='FreeKicks' val1={detailsObj.Match.Statistics.FreeKicks.Team1} val2={detailsObj.Match.Statistics.FreeKicks.Team2}></StatCell>
-          <StatCell label='GoalkeeperSaves' val1={detailsObj.Match.Statistics.GoalkeeperSaves.Team1} val2={detailsObj.Match.Statistics.GoalkeeperSaves.Team2}></StatCell>
-          <StatCell label='GoalKicks' val1={detailsObj.Match.Statistics.GoalKicks.Team1} val2={detailsObj.Match.Statistics.GoalKicks.Team2}></StatCell>
-          <StatCell label='Offsides' val1={detailsObj.Match.Statistics.Offsides.Team1} val2={detailsObj.Match.Statistics.Offsides.Team2}></StatCell>
-          <StatCell label='ShotsOffGoal' val1={detailsObj.Match.Statistics.ShotsOffGoal.Team1} val2={detailsObj.Match.Statistics.ShotsOffGoal.Team2}></StatCell>
-          <StatCell label='ShotsOnGoal' val1={detailsObj.Match.Statistics.ShotsOnGoal.Team1} val2={detailsObj.Match.Statistics.ShotsOnGoal.Team2}></StatCell>
-          <StatCell label='ThrowIns' val1={detailsObj.Match.Statistics.ThrowIns.Team1} val2={detailsObj.Match.Statistics.ThrowIns.Team2}></StatCell>
-          
-
-          
-          </View>
+          {StatisticsComp}
       </ScrollView>
       </View>
     )

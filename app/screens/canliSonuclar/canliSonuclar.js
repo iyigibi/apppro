@@ -84,7 +84,7 @@ export class CanliSonuclar extends React.Component {
    // this.data =data.getArticles('mainNews');
    let self=this;
    
-        axios.get('http://eduasportin.com/json/listActiveMatchLeagesToday.js?criteria=matchDate%20BETWEEN%20%27'+'2018-05-1%2000:00:00'+'%27%20AND%20%27'+'2018-05-1%2023:59:59'+'%27&r='+Math.random())
+        axios.get('http://eduasportin.com/json/listActiveMatchLeagesToday.js?criteria=matchDate%20BETWEEN%20%27'+'2018-05-13%2000:00:00'+'%27%20AND%20%27'+'2018-05-13%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
           console.log(response.data.list);
           let arr=response.data.list;

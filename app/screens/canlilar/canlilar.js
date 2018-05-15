@@ -87,7 +87,7 @@ export class Canlilar extends React.Component {
    self=this;
        // console.log(this.data.ID);
        
-        axios.get('https://eduasportin.com//json/listLiveMatchToday.js?criteria=league%20IN('+this.data.ID+')%20AND%20matchDate%20BETWEEN%20%27'+'2018-05-1%2000:00:00'+'%27%20AND%20%27'+'2018-05-1%2023:59:59'+'%27&r='+Math.random())
+        axios.get('https://eduasportin.com//json/listLiveMatchToday.js?criteria=league%20IN('+this.data.ID+')%20AND%20matchDate%20BETWEEN%20%27'+'2018-05-13%2000:00:00'+'%27%20AND%20%27'+'2018-05-13%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
          // console.log('burada '+response.data.list);
           let arr=response.data.list;
@@ -142,7 +142,7 @@ renderTab = (isSelected, title,first=false) => {
       </View>
         )
     }else{
-      let pho="https://v1.eduacdn.com/v01/800x600/"+info.item.newsImageName;
+     // let pho="https://v1.eduacdn.com/v01/800x600/"+info.item.newsImageName;
     return (
       <TouchableOpacity
         delayPressIn={70}
