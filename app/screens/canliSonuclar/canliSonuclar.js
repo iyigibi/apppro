@@ -71,10 +71,16 @@ export class CanliSonuclar extends React.Component {
     super(props);
     this.data=null;
     this.renderItem = this._renderItem.bind(this);
+
+    let date_=new Date();
+    let date_str=date_.getUTCFullYear()+"-"+(date_.getUTCMonth()+1)+"-"+(date_.getUTCDate()+0);
+    
+
     this.state = {
       stories: [],
       leaguesArr: [],
       isFetching: false,
+      date_str:date_str
     };
   }
 
@@ -83,10 +89,10 @@ export class CanliSonuclar extends React.Component {
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
    let self=this;
-   
-        axios.get('http://eduasportin.com/json/listActiveMatchLeagesToday.js?criteria=matchDate%20BETWEEN%20%27'+'2018-05-13%2000:00:00'+'%27%20AND%20%27'+'2018-05-13%2023:59:59'+'%27&r='+Math.random())
+ 
+        axios.get('http://eduasportin.com/json/listActiveMatchLeagesToday.js?criteria=matchDate%20BETWEEN%20%27'+this.state.date_str+'%2000:00:00'+'%27%20AND%20%27'+this.state.date_str+'%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
-          console.log(response.data.list);
+          //console.log(response.data.list);
           let arr=response.data.list;
           arr.unshift({ID:"topGal"});
           self.setState({ stories : arr, isFetching : false });
@@ -159,8 +165,8 @@ _SetLive(index){
     return (
       
 
-      <View style={styles.container}>
-        <Bayraklar item={info.item} navigation={this.props.navigation} /> 
+      <View style={styles.container}><RkText>{this.state.date_str}</RkText>
+        <Bayraklar item={info.item} navigation={this.props.navigation} date_str={this.state.date_str}/> 
       </View>
     )
   }

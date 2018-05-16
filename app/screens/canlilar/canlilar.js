@@ -74,20 +74,27 @@ export class Canlilar extends React.Component {
     let id = params ? params.id : 1;
     //this.data = data.getArticle(id);
     this.data = params.data_;
+    this.date_str=params.date_str;
     this.state = {
       league_id: props.league,
       header: props.header,
-      stories:[]
+      stories:[],
+      date_str_:''
     }
   }
   
+
 
   componentWillMount() {
    // this.data =data.getArticles('mainNews');
    self=this;
        // console.log(this.data.ID);
-       
-        axios.get('https://eduasportin.com//json/listLiveMatchToday.js?criteria=league%20IN('+this.data.ID+')%20AND%20matchDate%20BETWEEN%20%27'+'2018-05-13%2000:00:00'+'%27%20AND%20%27'+'2018-05-13%2023:59:59'+'%27&r='+Math.random())
+       let date_=new Date();
+       let date_str=date_.getUTCFullYear()+"-"+(date_.getUTCMonth()+1)+"-"+(date_.getUTCDate()+1);
+       date_str=this.date_str;
+       this.setState({date_str_:date_str});
+      // console.log(this.state.date_str_+" bu");
+        axios.get('https://eduasportin.com//json/listLiveMatchToday.js?criteria=league%20IN('+this.data.ID+')%20AND%20matchDate%20BETWEEN%20%27'+date_str+'%2000:00:00'+'%27%20AND%20%27'+date_str+'%2023:59:59'+'%27&r='+Math.random())
         .then(function (response) {
          // console.log('burada '+response.data.list);
           let arr=response.data.list;
