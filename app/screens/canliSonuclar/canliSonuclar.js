@@ -165,7 +165,7 @@ _SetLive(index){
     return (
       
 
-      <View style={styles.container}><RkText>{this.state.date_str}</RkText>
+      <View style={styles.container}>
         <Bayraklar item={info.item} navigation={this.props.navigation} date_str={this.state.date_str}/> 
       </View>
     )

@@ -41,7 +41,7 @@ render()
         onPress={() => this.props.navigation.navigate('Canlilar', {id: this.props.item.ID,data_: this.props.item,date_str:this.props.date_str})}>
       <View style={{flexDirection:'row',paddingVertical:15}}>
         <View style={{flex:1,borderBottomWidth:1,borderBottomColor:'#dedede'}}>
-          <RkText rkType='baslik'>{ulke+' '+this.props.item.country+' '+this.props.item.name+this.props.date_str}</RkText>
+          <RkText rkType='baslik'>{ulke+' '+this.props.item.country+' '+this.props.item.name}</RkText>
         </View>
         <View style={{alignSelf:'flex-end',backgroundColor:'#ff4433',borderRadius:5,paddingHorizontal:5,marginRight:5}}>
           <RkText>{this.props.item.sayi}</RkText>

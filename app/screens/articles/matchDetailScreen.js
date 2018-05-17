@@ -95,24 +95,50 @@ export class MatchDetailScreen extends React.Component {
          });
    }
 
+
+
    etkinlikEkle(etkinlikler_) {
 
     return etkinlikler_.map((data) => {
       let hangiTaraf;
       if(data.eventType=='halftimeScore'){
           return (<View style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}>
-            <GroupHeader label={ <View style={{flexDirection:'row'}}><RkText  rkType='fontEvents'>FIRST HALF SCORE : </RkText><RkText  rkType='fontEvents greenie'> {data.score+data.eventType}</RkText></View>}/>
+            <GroupHeader label={ <View style={{flexDirection:'row'}}><RkText  rkType='fontEvents'>FIRST HALF SCORE : </RkText><RkText  rkType='fontEvents greenie'> {data.score}</RkText></View>}/>
 
             </View>);
       }else if(data.eventType=='Goal'){
         if(data.ScoringTeam=='1'){
-          return (<View style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}><View style={{flexDirection:'row'}}><View style={{flex:8}}><RkText rkType='eventsFont'>{data.Player.text+data.eventType}</RkText></View><View style={{}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}></View></View><View><LinearGradient colors={['#ffffff','#f6f6f6']}
+          return (<View style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}>
+          <View style={{flexDirection:'row',alignItems:'center'}}>
+            <View style={{flex:8}}>
+              <RkText rkType='eventsFont'>{data.Player.text+data.eventType}</RkText>
+            </View>
+            <View style={{}}>
+              <RkText>{data.Time}</RkText>
+            </View>
+            <View style={{flex:8}}>
+            </View>
+          </View>
+          <View>
+            <LinearGradient colors={['#ffffff','#f6f6f6']}
           start={{x: 0.0, y: 0.0}}
           end={{x: 0.0, y: 1}}
           style={{paddingVertical:5,paddingLeft:10}}
           ></LinearGradient></View></View>)
         }else{
-          return (<View   style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}><View  style={{flexDirection:'row'}}><View style={{flex:8}}></View><View style={{}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}><RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText></View></View><View><LinearGradient colors={['#ffffff','#f6f6f6']}
+          return (<View   style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}>
+          <View style={{flexDirection:'row',alignItems:'center'}}>
+            <View style={{flex:8}}>
+            </View>
+            <View style={{}}>
+              <RkText>{data.Time}</RkText>
+            </View>
+            <View style={{flex:8}}>
+              <RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText>
+            </View>
+          </View>
+          <View>
+            <LinearGradient colors={['#ffffff','#f6f6f6']}
           start={{x: 0.0, y: 0.0}}
           end={{x: 0.0, y: 1}}
           style={{paddingVertical:5,paddingLeft:10}}
@@ -120,13 +146,35 @@ export class MatchDetailScreen extends React.Component {
        }
      }else{
       if(data.PlayerTeam=='1'){
-        return (<View  style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}><View  style={{flexDirection:'row'}}><View style={{flex:8}}><RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText></View><View style={{}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}></View></View><View><LinearGradient colors={['#ffffff','#f6f6f6']}
+        return (<View  style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <View style={{flex:8}}>
+            <RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText>
+          </View>
+          <View style={{}}>
+            <RkText>{data.Time}</RkText>
+          </View>
+          <View style={{flex:8}}>
+          </View>
+        </View>
+        <View><LinearGradient colors={['#ffffff','#f6f6f6']}
         start={{x: 0.0, y: 0.0}}
         end={{x: 0.0, y: 1}}
         style={{paddingVertical:5,paddingLeft:10}}
         ></LinearGradient></View></View>)
       }else{
-        return (<View style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}><View style={{flexDirection:'row'}}><View style={{flex:8}}></View><View style={{}}><RkText>{data.Time}</RkText></View><View style={{flex:8}}><RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText></View></View><View><LinearGradient colors={['#ffffff','#f6f6f6']}
+        return (<View style={{width:Dimensions.get('window').width,backgroundColor:'#ffffff'}} key={data.id}>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <View style={{flex:8}}>
+          </View>
+          <View style={{}}>
+            <RkText>{data.Time}</RkText>
+          </View>
+          <View style={{flex:8}}>
+            <RkText  rkType='eventsFont'>{data.Player.text+data.eventType}</RkText>
+          </View>
+        </View>
+        <View><LinearGradient colors={['#ffffff','#f6f6f6']}
         start={{x: 0.0, y: 0.0}}
         end={{x: 0.0, y: 1}}
         style={{paddingVertical:5,paddingLeft:10}}
@@ -178,6 +226,8 @@ if(detailsObj.Match.Goals && detailsObj.Match.Cards){
   etkinlikler_ = goals_;
 }else if(detailsObj.Match.Cards){
   etkinlikler_ = cards_;
+}else{
+  etkinlikler_=[];
 }
 let etkinlikComp;
 
