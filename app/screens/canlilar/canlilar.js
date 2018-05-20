@@ -70,11 +70,13 @@ export class Canlilar extends React.Component {
   constructor(props) {
     super(props);
     this.renderItem = this._renderItem.bind(this);
-    let {params} = this.props.navigation.state;
+    let {params} = this.props.datak;
+    console.log('burasıııı'+params);
     let id = params ? params.id : 1;
     //this.data = data.getArticle(id);
     this.data = params.data_;
     this.date_str=params.date_str;
+    console.log('burasıııı'+this.data);
     this.state = {
       league_id: props.league,
       header: props.header,

@@ -305,11 +305,11 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
      start={{x: 0.0, y: 0.0}}
      end={{x: 0.0, y: 1}}
      
+
      style={{paddingLeft:0,paddingTop:10,width:800}}
      >
      </LinearGradient>
      </View>
-     {StatisticsComp}
      <View style={{justifyContent:'center',flexDirection:'row'}}>
      <RkText>BALL POSSESSION</RkText>
     </View>
@@ -344,8 +344,6 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
 
      
      </View>
-
-
   );
 }
 
@@ -353,11 +351,16 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
       <View style={styles.root}>
       <View style={{}}>
       
+      
         </View>
       <ScrollView style={styles.root}>
       <View style={{position:'absolute'}}>
       <Image  style={{width:w__,height:h__}} source={require('../../assets/images/bg_livescores.jpg')} />
         </View>
+        <View style={{position:'absolute'}}>
+      
+        </View>
+      <View style={{margin:20,width:w__-40,backgroundColor:'#00000099'}}>
         <View  style={styles.stun}>
             <View style={styles.kutuLeft}>
             <View style={{paddingVertical:10}}></View>
@@ -371,7 +374,7 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
                 <View style={{paddingVertical:0}}></View>
             </View>
           </View>
-          <View  style={styles.stun2}>
+          <View  style={styles.stun}>
             <View style={styles.kutu2}>
             <View style={{paddingVertical:5}}></View>
             <Image  style={{width:w_,height:w_}} source={{uri:'https://ls.betradar.com/ls/crest/big/'+team1iconId+'.png'}}/>
@@ -387,7 +390,9 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
             <Image  style={{width:w_,height:w_}} source={{uri:'https://ls.betradar.com/ls/crest/big/'+team2iconId+'.png'}}/>
             </View>
           </View>
-          <View  style={styles.stun}>
+          
+        </View>
+        <View  style={{flex:1,flexDirection:'row',backgroundColor:'#00000099',borderTopColor:'#ff0000',borderTopWidth:1}}>
             <View style={styles.kutuLeft}>
                   <RkText  rkType='fontBottom'>stad: {stad}</RkText>
               </View>
@@ -395,7 +400,6 @@ if(detailsObj.Match.Statistics && detailsObj.Match.Statistics.BallPossession){
                   <RkText  rkType='fontBottom'>HAKEM: {hakem}</RkText>
               </View>
           </View>
-          
           <View style={styles.root}>
           <GroupHeader label={<RkText rkType='fontEvents'>EVENTS</RkText>}/>
           </View>
@@ -420,9 +424,6 @@ let styles = RkStyleSheet.create(theme => ({
     backgroundColor:'#ffffff',
     flex:1,
   }, stun: {
-    flexDirection:'row',
-    flex:1,
-  }, stun2: {
     flexDirection:'row',
     flex:1,
   },kutu: {
